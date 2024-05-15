@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Request</title>
+</head>
+<body>
+    <button id="sendRequestBtn">Send Request</button>
+
+    <script>
+        // Add event listener to the button
+        document.getElementById("sendRequestBtn").addEventListener("click", function() {
+            // Send a GET request to your Django server
+            fetch("http://your-django-server-url")
+                .then(response => {
+                    // Check if response is successful
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Parse response as text
+                    return response.text();
+                })
+                .then(data => {
+                    // Log the response data
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Log any errors that occur during the fetch
+                    console.error('There was a problem with your fetch operation:', error);
+                });
+        });
+    </script>
+</body>
+</html>
